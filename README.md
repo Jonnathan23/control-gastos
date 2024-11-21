@@ -60,7 +60,7 @@ npm install react-calendar
 ```
 
 ```ts
-import { useState } from 'react';
+import 'react-calendar/dist/Calendar.css';
 
 import DatePicker from 'react-date-picker';
 
