@@ -55,6 +55,7 @@ export default tseslint.config({
 npm i react-date-picker
 ```
 
+```ts
 import { useState } from 'react';
 
 import DatePicker from 'react-date-picker';
@@ -62,3 +63,5 @@ import DatePicker from 'react-date-picker';
 type ValuePiece = Date | null;
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
+
+```
