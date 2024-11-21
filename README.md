@@ -1,7 +1,7 @@
 # Control Gastos
 
-# Comando de depencias utilizadas
-## Calendario
+## Comando de depencias utilizadas
+### Calendario
 ```bash
 npm i react-date-picker
 ```
