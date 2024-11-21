@@ -51,9 +51,9 @@ export default tseslint.config({
 
 # Comando de depencias utilizadas
 ## Calendario
-´´´bash
+```bash
 npm i react-date-picker
-´´´
+```
 
 import { useState } from 'react';
 import DatePicker from 'react-date-picker';
