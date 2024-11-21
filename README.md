@@ -54,6 +54,10 @@ export default tseslint.config({
 ```bash
 npm i react-date-picker
 ```
+Dependencia extra para el calendario
+```bash
+npm install react-calendar
+```
 
 ```ts
 import { useState } from 'react';
