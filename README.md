@@ -28,7 +28,7 @@ Efecto de boton deslizante
 npm i react-swipeable-list
 ```
 
-
+Importar
 
 ```ts
 import {
@@ -43,3 +43,38 @@ import {
 import 'react-swipeable-list/dist/styles.css';
 
 ```
+Ejemplo de uso
+```ts
+/**
+     * Acciones que se mostraran al principio del item (swipe izquierda)
+     * En este caso, solo se muestra una acci n para actualizar el gasto
+     * @returns {JSX.Element}
+     */
+    const leadeingActions = () => (
+        <LeadingActions>
+            <SwipeAction
+                onClick={() => { }}
+            >
+                Actualizar
+            </SwipeAction>
+        </LeadingActions>
+    )
+
+    /**     
+     * Acciones que se mostraran al final del item (swipe derecha)
+     * En este caso, solo se muestra una acción para eliminar el gasto
+     * @returns {JSX.Element}
+     */
+    const trailingActions = () => (
+        <TrailingActions>
+            <SwipeAction
+                onClick={() => { }}
+            >
+                Eliminar
+            </SwipeAction>
+        </TrailingActions>
+    )
+
+```
+
+
