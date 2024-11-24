@@ -2,6 +2,7 @@ import { Fragment } from 'react'
 import { PlusCircleIcon } from '@heroicons/react/24/solid'
 import { Dialog, Transition } from '@headlessui/react'
 import { useBudget } from '../hooks/useBudget'
+import ExpenseForm from './ExpenseForm'
 
 export default function ExpenseModal() {
 
@@ -29,7 +30,7 @@ export default function ExpenseModal() {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                     >
-                    <div className="fixed inset-0 bg-black bg-opacity-75" />
+                        <div className="fixed inset-0 bg-black bg-opacity-75" />
                     </Transition.Child>
 
                     <div className="fixed inset-0 overflow-y-auto">
@@ -45,7 +46,7 @@ export default function ExpenseModal() {
                             >
                                 <Dialog.Panel className="w-full max-w-3xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
 
-
+                                    <ExpenseForm />
 
                                 </Dialog.Panel>
                             </Transition.Child>
