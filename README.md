@@ -22,3 +22,24 @@ type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 ```
+### react-swipeable-list 
+Efecto de boton deslizante
+```bash
+npm i react-swipeable-list
+```
+
+
+
+```ts
+import {
+    LeadingActions,
+    SwipeableList,
+    SwipeableListItem,
+    SwipeAction,
+    TrailingActions
+} from 'react-swipeable-list';
+
+// Estilos css
+import 'react-swipeable-list/dist/styles.css';
+
+```
