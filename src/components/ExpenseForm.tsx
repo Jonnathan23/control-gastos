@@ -2,22 +2,30 @@ import DatePicker from 'react-date-picker';
 import { categories } from "../data/categories";
 import 'react-calendar/dist/Calendar.css';
 import 'react-date-picker/dist/DatePicker.css';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { DraftExpense, Value } from '../types';
-import { ChangeEvent, FormEvent, useState } from 'react';
 import { useBudget } from '../hooks/useBudget';
 import ErrorMessage from './ErrorMessage';
-
-
+import { ErrorFormExpense } from '../errors/errors';
 
 
 export default function ExpenseForm() {
     const initialExpense: DraftExpense = { amount: 0, expenseName: '', category: '', date: new Date() }
 
-    //*States
+    //* States
     const [expense, setExpense] = useState<DraftExpense>(initialExpense);
+    const [previousAmount, setPreviousAmount] = useState(0)
 
     const [error, setError] = useState('')
-    const { dispatch } = useBudget()
+    const { dispatch, state, remaininBudget } = useBudget()
+
+    useEffect(() => {
+        if (state.editingId) {
+            const editingExpense = state.expenses.filter(expense => expense.id === state.editingId)[0]
+            setExpense(editingExpense)
+            setPreviousAmount(editingExpense.amount)
+        }
+    }, [state.editingId])
 
 
     //* Funciones formulario
@@ -25,7 +33,6 @@ export default function ExpenseForm() {
         const { name, value } = event.target
 
         const isAmountField = ['amount'].includes(name)
-        console.log(`Is amount ${isAmountField}`)
 
         setExpense({
             ...expense,
@@ -35,26 +42,43 @@ export default function ExpenseForm() {
     }
 
     const handleChangeDate = (value: Value) => {
-        console.log(value)
         setExpense({
             ...expense,
             date: value
         })
     }
 
+    const validForm = (): Boolean => {
+        try {
+            if (Object.values(expense).includes('')) throw new ErrorFormExpense('Todos los campos son obligatorios', setError)
+
+            console.log(`state.budget: ${state.budget}`)
+            console.log(`expense.amount - previousAmount: ${expense.amount} - ${previousAmount} = ${expense.amount - previousAmount}`)
+            console.log(`reimainin: ${remaininBudget}`)
+            if ((expense.amount - previousAmount) > remaininBudget) throw new ErrorFormExpense('Ese gasto supera el presupuesto', setError)
+
+        } catch (error) {
+            return false
+        }
+        return true
+    }
+
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        if (Object.values(expense).includes('')) {
-            setError('Todos los campos son obligatorios')
-            return
-        }
+        // Validar
+        if (!validForm()) return
 
         //Agregar un nuevo gasto
-        dispatch({ type: 'add-expense', payload: { expense: expense } })
+        if (state.editingId) {
+            dispatch({ type: 'update-expense', payload: { expense: { ...expense, id: state.editingId } } })
+        } else {
+            dispatch({ type: 'add-expense', payload: { expense: expense } })
+        }
 
         //Reiniciar el state
         setExpense(initialExpense)
+        setPreviousAmount(0)
     }
 
     return (
@@ -62,7 +86,7 @@ export default function ExpenseForm() {
             <legend
                 className="uppercase text-2xl text-center font-black border-b-4 border-blue-500 py-2"
             >
-                Nuevo gasto
+                {state.editingId ? 'Editar Gasto' : 'Nuevo Gasto'}
             </legend>
 
             {error && <ErrorMessage>{error}</ErrorMessage>}
@@ -146,7 +170,7 @@ export default function ExpenseForm() {
             <input
                 className="bg-blue-600 cursor-pointer w-full p-2 text-white uppercase font-bold rounded-lg"
                 type="submit"
-                value="Registrar Gasto"
+                value={state.editingId ? 'Guardar Cambios' : 'Agregar Gasto'}
             />
 
 
