@@ -1,5 +1,4 @@
-//TODO descomentar
-//import {v4 as uuidv4} from 'uuid'
+import {v4 as uuidv4} from 'uuid'
 import { DraftExpense, Expense } from "../types"
 
 export type BudgetActions =
@@ -23,7 +22,7 @@ export const initialState: BudgetState = {
 const createExpense = (draftExpense: DraftExpense): Expense => {
     return {
         ...draftExpense,
-        id: 'ss' //TODO: uuidv4()
+        id: uuidv4()
     }
 }
 
@@ -50,12 +49,6 @@ export const budgetReducer = (state: BudgetState = initialState, action: BudgetA
         }
     }
 
-
-    /**
-     * TODO: instalar la dependencia uid: npm i uuid
-     * * npm i uuid
-     * * npm i --save-dev @types/uuid
-     */
     if (action.type === 'add-expense') {
 
         const expense = createExpense(action.payload.expense)

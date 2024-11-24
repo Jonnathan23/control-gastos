@@ -5,6 +5,7 @@ import 'react-date-picker/dist/DatePicker.css';
 import { DraftExpense, Value } from '../types';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useBudget } from '../hooks/useBudget';
+import ErrorMessage from './ErrorMessage';
 
 
 
@@ -63,6 +64,8 @@ export default function ExpenseForm() {
             >
                 Nuevo gasto
             </legend>
+
+            {error && <ErrorMessage>{error}</ErrorMessage>}
 
             <div className="flex flex-col gap-2">
                 <label
