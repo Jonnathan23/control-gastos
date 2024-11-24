@@ -28,8 +28,10 @@ Efecto de boton deslizante
 npm i react-swipeable-list
 ```
 En caso de error de
+
 ![image](https://github.com/user-attachments/assets/1e11ec15-8024-4d47-a0fc-b282ef59b0ea)
 
+instalar pop-types
 
 ```bash
 npm install prop-types
