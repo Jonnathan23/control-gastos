@@ -27,7 +27,9 @@ Efecto de boton deslizante
 ```bash
 npm i react-swipeable-list
 ```
-En caso de error de Se bloqueó la carga de un módulo de “http://localhost:5173/node_modules/.vite/deps/react-swipeable-list.js?t=1732431798101&v=1102ada7” debido a un tipo MIME no permitido (“”) instalar
+En caso de error de
+![image](https://github.com/user-attachments/assets/1e11ec15-8024-4d47-a0fc-b282ef59b0ea)
+
 
 ```bash
 npm install prop-types
