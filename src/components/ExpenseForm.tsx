@@ -141,7 +141,7 @@ export default function ExpenseForm() {
                     value={expense.category}
                     onChange={handleChange}
                 >
-                    <option value="" defaultValue={categories[0].id} disabled>--- Seleccione Categoria ---'</option>
+                    <option value="" defaultValue={categories[0].id} disabled>--- Seleccione Categoria ---</option>
                     {categories.map((category) => (
                         <option
                             key={category.id}
