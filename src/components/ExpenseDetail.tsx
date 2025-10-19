@@ -20,7 +20,7 @@ type ExpenseDetailProps = {
 
 export default function ExpenseDetail({ expense }: ExpenseDetailProps) {
 
-    const categoryInfo = useMemo(() => categories.filter(cat => cat.id === expense.category)[0], [expense])
+    const categoryInfo = useMemo(() => categories.filter(cat => cat.cat_id === expense.ex_category_id)[0], [expense])
     const { dispatch } = useBudget()
 
     /**
@@ -31,7 +31,7 @@ export default function ExpenseDetail({ expense }: ExpenseDetailProps) {
     const leadeingActions = () => (
         <LeadingActions>
             <SwipeAction
-                onClick={() => dispatch({ type: 'get-expense-by-id', payload: { id: expense.id } })}
+                onClick={() => dispatch({ type: 'get-expense-by-id', payload: { id: expense.ex_id } })}
             >
                 Actualizar
             </SwipeAction>
@@ -46,7 +46,7 @@ export default function ExpenseDetail({ expense }: ExpenseDetailProps) {
     const trailingActions = () => (
         <TrailingActions>
             <SwipeAction
-                onClick={() => dispatch({ type: 'delete-expense', payload: { id: expense.id } })}
+                onClick={() => dispatch({ type: 'delete-expense', payload: { id: expense.ex_id } })}
                 destructive={true}
             >
                 Eliminar
@@ -66,20 +66,20 @@ export default function ExpenseDetail({ expense }: ExpenseDetailProps) {
                 <div className="bg-white shadow-lg p-5 w-full border-b border-gray-200 flex gap-5 items-center">
                     <div>
                         <img
-                            src={`/icono_${categoryInfo.icon}.svg`}
+                            src={`/icono_${categoryInfo.cat_icon}.svg`}
                             alt="icono gasto"
                             className="w-20"
                         />
                     </div>
 
                     <div className="flex-1 space-y-2">
-                        <p className="text-sm font-bold uppercase text-slate-500">{categoryInfo.name}</p>
-                        <p>{expense.expenseName}</p>
-                        <p className="text-slate-600 text-sm">{formatDate(expense.date!.toString())}</p>
+                        <p className="text-sm font-bold uppercase text-slate-500">{categoryInfo.cat_name}</p>
+                        <p>{expense.ex_expenseName}</p>
+                        <p className="text-slate-600 text-sm">{formatDate(expense.ex_date!.toString())}</p>
                     </div>
 
                     <AmountDisplay
-                        amount={expense.amount}
+                        amount={expense.ex_amount}
                     />
                 </div>
             </SwipeableListItem>

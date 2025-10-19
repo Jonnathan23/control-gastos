@@ -10,7 +10,7 @@ import { ErrorFormExpense } from '../errors/errors';
 
 
 export default function ExpenseForm() {
-    const initialExpense: DraftExpense = { amount: 0, expenseName: '', category: '', date: new Date() }
+    const initialExpense: DraftExpense = { ex_amount: 0, ex_expenseName: '', ex_category_id: '', ex_date: new Date() }
 
     //* States
     const [expense, setExpense] = useState<DraftExpense>(initialExpense);
@@ -21,9 +21,9 @@ export default function ExpenseForm() {
 
     useEffect(() => {
         if (state.editingId) {
-            const editingExpense = state.expenses.filter(expense => expense.id === state.editingId)[0]
+            const editingExpense = state.expenses.filter(expense => expense.ex_id === state.editingId)[0]
             setExpense(editingExpense)
-            setPreviousAmount(editingExpense.amount)
+            setPreviousAmount(editingExpense.ex_amount)
         }
     }, [state.editingId])
 
@@ -32,7 +32,7 @@ export default function ExpenseForm() {
     const handleChange = (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = event.target
 
-        const isAmountField = ['amount'].includes(name)
+        const isAmountField = ['ex_amount'].includes(name)
 
         setExpense({
             ...expense,
@@ -44,7 +44,7 @@ export default function ExpenseForm() {
     const handleChangeDate = (value: Value) => {
         setExpense({
             ...expense,
-            date: value
+            ex_date: value
         })
     }
 
@@ -53,9 +53,9 @@ export default function ExpenseForm() {
             if (Object.values(expense).includes('')) throw new ErrorFormExpense('Todos los campos son obligatorios', setError)
 
             console.log(`state.budget: ${state.budget}`)
-            console.log(`expense.amount - previousAmount: ${expense.amount} - ${previousAmount} = ${expense.amount - previousAmount}`)
+            console.log(`expense.ex_amount - previousAmount: ${expense.ex_amount} - ${previousAmount} = ${expense.ex_amount - previousAmount}`)
             console.log(`reimainin: ${remaininBudget}`)
-            if ((expense.amount - previousAmount) > remaininBudget) throw new ErrorFormExpense('Ese gasto supera el presupuesto', setError)
+            if ((expense.ex_amount - previousAmount) > remaininBudget) throw new ErrorFormExpense('Ese gasto supera el presupuesto', setError)
 
         } catch (error) {
             return false
@@ -71,7 +71,7 @@ export default function ExpenseForm() {
 
         //Agregar un nuevo gasto
         if (state.editingId) {
-            dispatch({ type: 'update-expense', payload: { expense: { ...expense, id: state.editingId } } })
+            dispatch({ type: 'update-expense', payload: { expense: { ...expense, ex_id: state.editingId } } })
         } else {
             dispatch({ type: 'add-expense', payload: { expense: expense } })
         }
@@ -93,61 +93,61 @@ export default function ExpenseForm() {
 
             <div className="flex flex-col gap-2">
                 <label
-                    htmlFor="expenseName"
+                    htmlFor="ex_expenseName"
                     className="text-xl"
                 >
                     Nombre Gasto:
                 </label>
                 <input
                     type="text"
-                    id="expenseName"
-                    name="expenseName"
+                    id="ex_expenseName"
+                    name="ex_expenseName"
                     placeholder="Añade el nombre del gasto"
                     className="bg-slate-100 p-250"
-                    value={expense.expenseName}
+                    value={expense.ex_expenseName}
                     onChange={handleChange}
                 />
             </div>
 
             <div className="flex flex-col gap-2">
                 <label
-                    htmlFor="amount"
+                    htmlFor="ex_amount"
                     className="text-xl"
                 >
                     Cantidad:
                 </label>
                 <input
                     type="number"
-                    id="amount"
-                    name="amount"
+                    id="ex_amount"
+                    name="ex_amount"
                     placeholder="Añade la cantidad del gasto, ej: 300"
                     className="bg-slate-100 p-250"
-                    value={expense.amount}
+                    value={expense.ex_amount}
                     onChange={handleChange}
                 />
             </div>
 
             <div className="flex flex-col gap-2">
                 <label
-                    htmlFor="category"
+                    htmlFor="ex_category_id"
                     className="text-xl"
                 >
                     Categoria:
                 </label>
                 <select
-                    id="category"
-                    name="category"
+                    id="ex_category_id"
+                    name="ex_category_id"
                     className="bg-slate-100 p-250"
-                    value={expense.category}
+                    value={expense.ex_category_id}
                     onChange={handleChange}
                 >
-                    <option value="" defaultValue={categories[0].id} disabled>--- Seleccione Categoria ---</option>
+                    <option value="" defaultValue={categories[0].cat_id} disabled>--- Seleccione Categoria ---</option>
                     {categories.map((category) => (
                         <option
-                            key={category.id}
-                            value={category.id}
+                            key={category.cat_id}
+                            value={category.cat_id}
                         >
-                            {category.name}
+                            {category.cat_name}
                         </option>
                     ))}
                 </select>
@@ -155,14 +155,14 @@ export default function ExpenseForm() {
 
             <div className="flex flex-col gap-2">
                 <label
-                    htmlFor="expenseName"
+                    htmlFor="ex_expenseName"
                     className="text-xl"
                 >
                     Fecha Gasto:
                 </label>
                 <DatePicker
                     className='bg-slate-100 p-2 border-0'
-                    value={expense.date}
+                    value={expense.ex_date}
                     onChange={handleChangeDate}
                 />
             </div>

@@ -1,11 +1,11 @@
 import { Category } from "../types";
 
 export const categories:Category[]  = [
-    { id: '1', name: 'Ahorro', icon: 'ahorro' },
-    { id: '2', name: 'Comida', icon: 'comida' },
-    { id: '3', name: 'Casa', icon: 'casa' },
-    { id: '4', name: 'Gastos Varios', icon: 'gastos' },
-    { id: '5', name: 'Ocio', icon: 'ocio' },
-    { id: '6', name: 'Salud', icon: 'salud' },
-    { id: '7', name: 'Suscripciones', icon: 'suscripciones' },
+    { cat_id: '1', cat_name: 'Ahorro', cat_icon: 'ahorro' },
+    { cat_id: '2', cat_name: 'Comida', cat_icon: 'comida' },
+    { cat_id: '3', cat_name: 'Casa', cat_icon: 'casa' },
+    { cat_id: '4', cat_name: 'Gastos Varios', cat_icon: 'gastos' },
+    { cat_id: '5', cat_name: 'Ocio', cat_icon: 'ocio' },
+    { cat_id: '6', cat_name: 'Salud', cat_icon: 'salud' },
+    { cat_id: '7', cat_name: 'Suscripciones', cat_icon: 'suscripciones' },
 ];

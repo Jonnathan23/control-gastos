@@ -6,7 +6,7 @@ export default function ExpeseList() {
 
     const { state } = useBudget()
 
-    const filteredExtenses = state.currentCategory ? state.expenses.filter(expense => expense.category === state.currentCategory) : state.expenses
+    const filteredExtenses = state.currentCategory ? state.expenses.filter(expense => expense.ex_category_id === state.currentCategory) : state.expenses
     const isEmpty = useMemo(() => filteredExtenses.length === 0, [filteredExtenses])
 
     return (
@@ -17,7 +17,7 @@ export default function ExpeseList() {
 
                     {filteredExtenses.map(expense => (
                         <ExpenseDetail
-                            key={expense.id}
+                            key={expense.ex_id}
                             expense={expense}
                         />
                     ))}

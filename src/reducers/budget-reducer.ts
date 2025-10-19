@@ -6,18 +6,18 @@ export type BudgetActions =
     { type: 'show-modal' } |
     { type: 'close-modal' } |
     { type: 'add-expense', payload: { expense: DraftExpense } } |
-    { type: 'delete-expense', payload: { id: Expense['id'] } } |
-    { type: 'get-expense-by-id', payload: { id: Expense['id'] } } |
+    { type: 'delete-expense', payload: { id: Expense['ex_id'] } } |
+    { type: 'get-expense-by-id', payload: { id: Expense['ex_id'] } } |
     { type: 'update-expense', payload: { expense: Expense } } |
     { type: 'reset-app' } |
-    { type: 'add-filter-category', payload: { id: Category['id'] } }
+    { type: 'add-filter-category', payload: { id: Category['cat_id'] } }
 
 export type BudgetState = {
     budget: number
     modal: boolean
     expenses: Expense[]
-    editingId: Expense['id']
-    currentCategory: Category['id']
+    editingId: Expense['ex_id']
+    currentCategory: Category['cat_id']
 }
 
 const getLocalStorageExpenses = () => {
@@ -42,7 +42,7 @@ export const initialState: BudgetState = {
 const createExpense = (draftExpense: DraftExpense): Expense => {
     return {
         ...draftExpense,
-        id: uuidv4()
+        ex_id: uuidv4()
     }
 }
 
@@ -84,7 +84,7 @@ export const budgetReducer = (state: BudgetState = initialState, action: BudgetA
     if (action.type === 'delete-expense') {
         return {
             ...state,
-            expenses: state.expenses.filter(expense => expense.id !== action.payload.id)
+            expenses: state.expenses.filter(expense => expense.ex_id !== action.payload.id)
         }
     }
 
@@ -99,7 +99,7 @@ export const budgetReducer = (state: BudgetState = initialState, action: BudgetA
     if (action.type === 'update-expense') {
         return {
             ...state,
-            expenses: state.expenses.map(expense => expense.id === action.payload.expense.id ? action.payload.expense : expense),
+            expenses: state.expenses.map(expense => expense.ex_id === action.payload.expense.ex_id ? action.payload.expense : expense),
             modal: false,
             editingId: ''
         }

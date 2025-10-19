@@ -17,18 +17,18 @@ export default function FilterByCategory() {
                 <div className="flex flex-col md:flex-row md:items-center gap-5">
                     <label htmlFor="category">Filtrar Gastos</label>
                     <select
-                        id="category"
+                        id="cat_id"
                         className="bg-slate-10 p-3 flex-1 rounded"
                         onChange={handleChange}
                     >
                         <option value="">Todas las categorias</option>
                         {categories.map(category => (
                             <option
-                                key={category.id}
-                                value={category.id}
+                                key={category.cat_id}
+                                value={category.cat_id}
 
                             >
-                                {category.name}
+                                {category.cat_name}
                             </option>
                         ))}
                     </select>
