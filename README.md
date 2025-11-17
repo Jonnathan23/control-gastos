@@ -1,88 +1,55 @@
-# Control Gastos
+# Control de Gastos y Recaudaciones
 
-## Comando de depencias utilizadas
-### Calendario
-```bash
-npm i react-date-picker
-```
-Dependencia extra para el calendario
-```bash
-npm install react-calendar
-```
+![Banner o logo del proyecto](./public/control_gastos_miniatura.png) <!-- Opcional: Reemplaza esto con un logo o banner si tienes uno -->
 
-```ts
-import 'react-calendar/dist/Calendar.css';
+## 📝 Descripción
 
-import DatePicker from 'react-date-picker';
+**Control de Gastos** es una aplicación web diseñada para facilitar la gestión de finanzas personales o del hogar. El objetivo principal es ofrecer a los usuarios una herramienta intuitiva y clara para registrar, categorizar y visualizar sus gastos, permitiéndoles tener un panorama completo de a dónde va su dinero.
 
-import 'react-date-picker/dist/DatePicker.css';
+Actualmente, el proyecto se está expandiendo para incluir un módulo de **control de recaudaciones**, lo que permitirá a los usuarios llevar un registro no solo de sus salidas de dinero, sino también de sus ingresos. Esta nueva funcionalidad transformará la herramienta en una solución más integral para la gestión financiera personal.
 
-type ValuePiece = Date | null;
+## ✨ Características Principales
 
-type Value = ValuePiece | [ValuePiece, ValuePiece];
+*   **Registro de Gastos:** Añade nuevos gastos especificando monto, categoría, fecha y una descripción.
+*   **Visualización de Datos:** Gráficos y resúmenes que muestran la distribución de gastos por categoría.
+*   **Filtrado:** Filtra los gastos por fecha o categoría para un análisis más detallado.
+*   **(En desarrollo) Control de Recaudaciones:** Módulo para registrar y gestionar fuentes de ingreso.
 
-```
-### react-swipeable-list 
-Efecto de boton deslizante
-```bash
-npm i react-swipeable-list
-```
-En caso de error de
+## 🛠️ Tecnologías y Dependencias
 
-![image](https://github.com/user-attachments/assets/1e11ec15-8024-4d47-a0fc-b282ef59b0ea)
+Este proyecto está construido con tecnologías web modernas para asegurar una experiencia de usuario fluida y un desarrollo mantenible. Las principales dependencias son:
 
-instalar pop-types
+*   **[React](https://reactjs.org/):** Biblioteca principal para construir la interfaz de usuario.
+*   **[Vite](https://vitejs.dev/):** Herramienta de desarrollo y empaquetado de nueva generación, que ofrece un arranque en frío extremadamente rápido.
+*   **[Axios](https://axios-http.com/):** Cliente HTTP basado en promesas para realizar peticiones al backend o a APIs externas.
+*   **[Recharts](https://recharts.org/):** (Ejemplo) Una biblioteca de gráficos para visualizar los datos de gastos de forma atractiva.
+*   **[Zustand](https://github.com/pmndrs/zustand):** (Ejemplo) Una solución de manejo de estado simple y potente para React.
 
-```bash
-npm install prop-types
-```
-Importar
+> **Nota:** Te recomiendo revisar tu archivo `package.json` para listar todas las dependencias exactas del proyecto y mantener esta sección actualizada.
 
-```ts
-import {
-    LeadingActions,
-    SwipeableList,
-    SwipeableListItem,
-    SwipeAction,
-    TrailingActions
-} from 'react-swipeable-list';
+## 🚀 Instalación y Puesta en Marcha
 
-// Estilos css
-import 'react-swipeable-list/dist/styles.css';
+Para ejecutar este proyecto en tu entorno local, sigue estos pasos:
 
-```
-Ejemplo de uso
-```ts
-/**
-     * Acciones que se mostraran al principio del item (swipe izquierda)
-     * En este caso, solo se muestra una acci n para actualizar el gasto
-     * @returns {JSX.Element}
-     */
-    const leadeingActions = () => (
-        <LeadingActions>
-            <SwipeAction
-                onClick={() => { }}
-            >
-                Actualizar
-            </SwipeAction>
-        </LeadingActions>
-    )
+1.  **Clona el repositorio:**
+    ```bash
+    git clone https://github.com/tu-usuario/control-gastos.git
+    cd control-gastos
+    ```
 
-    /**     
-     * Acciones que se mostraran al final del item (swipe derecha)
-     * En este caso, solo se muestra una acción para eliminar el gasto
-     * @returns {JSX.Element}
-     */
-    const trailingActions = () => (
-        <TrailingActions>
-            <SwipeAction
-                onClick={() => { }}
-            >
-                Eliminar
-            </SwipeAction>
-        </TrailingActions>
-    )
+2.  **Instala las dependencias:**
+    ```bash
+    npm install
+    ```
 
-```
+3.  **Ejecuta la aplicación en modo de desarrollo:**
+    ```bash
+    npm run dev
+    ```
 
+4.  Abre tu navegador y visita `http://localhost:5173` (o el puerto que indique la consola).
+
+## 🤝 Contribuciones
+
+Las contribuciones son bienvenidas. Si deseas mejorar el proyecto, por favor, abre un *issue* para discutir los cambios o envía directamente un *pull request*.
 
